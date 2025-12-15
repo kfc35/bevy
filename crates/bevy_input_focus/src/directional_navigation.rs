@@ -249,6 +249,32 @@ impl Default for AutoNavigationConfig {
     }
 }
 
+/// Denotes whether an edge in NavNeighbors was manually added by the user 
+/// or automatically added by the [`DirectionalNavigationPlugin`]'s system.
+/// 
+/// Manually added edges will not be pruned by automatic systems. The user
+/// is responsible for removing such edges.
+///
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+#[cfg_attr(
+    feature = "bevy_reflect",
+    derive(Reflect),
+    reflect(Default, Debug, PartialEq, Clone)
+)]
+pub struct ManuallyAdded(bool);
+impl ManuallyAdded {
+    /// A manually added edge. It will not be subject to automatic removal.
+    pub const TRUE: Self = Self(true);
+    /// An edge that was automatically added. It can be automatically removed when
+    /// either of its entities is removed.
+    pub const FALSE: Self = Self(false);
+
+    #[inline]
+    pub fn get(self) -> bool {
+        self.0
+    }
+}
+
 /// The up-to-eight neighbors of a focusable entity, one for each [`CompassOctant`].
 #[derive(Default, Debug, Clone, PartialEq)]
 #[cfg_attr(
@@ -263,7 +289,7 @@ pub struct NavNeighbors {
     /// If no neighbor exists in a given direction, the value will be [`None`].
     /// In most cases, using [`NavNeighbors::set`] and [`NavNeighbors::get`]
     /// will be more ergonomic than directly accessing this array.
-    pub neighbors: [Option<Entity>; 8],
+    pub neighbors: [Option<(Entity, ManuallyAdded)>; 8],
 }
 
 impl NavNeighbors {
@@ -273,13 +299,13 @@ impl NavNeighbors {
     };
 
     /// Get the neighbor for a given [`CompassOctant`].
-    pub const fn get(&self, octant: CompassOctant) -> Option<Entity> {
+    pub const fn get(&self, octant: CompassOctant) -> Option<(Entity, ManuallyAdded)> {
         self.neighbors[octant.to_index()]
     }
 
     /// Set the neighbor for a given [`CompassOctant`].
-    pub const fn set(&mut self, octant: CompassOctant, entity: Entity) {
-        self.neighbors[octant.to_index()] = Some(entity);
+    pub const fn set(&mut self, octant: CompassOctant, entity: Entity, manually_added: ManuallyAdded) {
+        self.neighbors[octant.to_index()] = Some((entity, manually_added));
     }
 }
 
@@ -324,7 +350,7 @@ impl DirectionalNavigationMap {
 
         for node in self.neighbors.values_mut() {
             for neighbor in node.neighbors.iter_mut() {
-                if *neighbor == Some(entity) {
+                if *neighbor == Some((entity, _)) {
                     *neighbor = None;
                 }
             }
