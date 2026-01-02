@@ -11,7 +11,7 @@ use bevy_camera::{
     visibility::{InheritedVisibility, ViewVisibility},
 };
 use bevy_math::{bounding::Aabb3d, Ray3d};
-use bevy_mesh::{Mesh, Mesh2d, Mesh3d};
+use bevy_mesh::{MainWorldMeshRetriever, Mesh, Mesh2d, Mesh3d};
 use bevy_reflect::{std_traits::ReflectDefault, Reflect};
 
 use intersections::*;
@@ -278,7 +278,7 @@ impl<'w, 's> MeshRayCast<'w, 's> {
                 }
 
                 // Does the mesh handle resolve?
-                let Some(mesh) = self.meshes.get(mesh_handle) else {
+                let Some(mesh) = self.meshes.get_main_world(mesh_handle) else {
                     return;
                 };
 

@@ -12,7 +12,7 @@ use crate::SerializedMeshAttributeData;
 use alloc::collections::BTreeMap;
 #[cfg(feature = "morph")]
 use bevy_asset::Handle;
-use bevy_asset::{Asset, RenderAssetUsages};
+use bevy_asset::{Asset, AssetId, Assets, RenderAssetUsages};
 #[cfg(feature = "morph")]
 use bevy_image::Image;
 use bevy_math::{bounding::Aabb3d, primitives::Triangle3d, *};
@@ -2361,6 +2361,23 @@ impl core::ops::Mul<Mesh> for Transform {
 
     fn mul(self, rhs: Mesh) -> Self::Output {
         rhs.transformed_by(self)
+    }
+}
+
+pub trait MainWorldMeshRetriever {
+    fn get_main_world(&self, id: impl Into<AssetId<Mesh>>) -> Option<&Mesh>;
+}
+
+impl MainWorldMeshRetriever for Assets<Mesh> {
+    fn get_main_world(&self, id: impl Into<AssetId<Mesh>>) -> Option<&Mesh> {
+        let maybe_mesh = self.get(id);
+        if let Some(mesh) = maybe_mesh
+            && mesh.asset_usage.contains(RenderAssetUsages::MAIN_WORLD)
+        {
+            Some(mesh)
+        } else {
+            None
+        }
     }
 }
 

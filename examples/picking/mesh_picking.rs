@@ -22,6 +22,7 @@
 use std::f32::consts::PI;
 
 use bevy::{color::palettes::tailwind::*, picking::pointer::PointerInteraction, prelude::*};
+use bevy_asset::RenderAssetUsages;
 
 fn main() {
     App::new()
@@ -51,8 +52,10 @@ fn setup_scene(
     let hover_matl = materials.add(Color::from(CYAN_300));
     let pressed_matl = materials.add(Color::from(YELLOW_300));
 
+    let mut cuboid_mesh: Mesh = Cuboid::default().into();
+    cuboid_mesh.asset_usage = RenderAssetUsages::RENDER_WORLD;
     let shapes = [
-        meshes.add(Cuboid::default()),
+        meshes.add(cuboid_mesh),
         meshes.add(Tetrahedron::default()),
         meshes.add(Capsule3d::default()),
         meshes.add(Torus::default()),
