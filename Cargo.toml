@@ -1327,7 +1327,7 @@ wasm = true
 name = "contact_shadows"
 path = "examples/3d/contact_shadows.rs"
 doc-scrape-examples = true
-required-features = ["bluenoise_texture"]
+required-features = ["bluenoise_texture", "bevy_feathers"]
 
 [package.metadata.example.contact_shadows]
 name = "Contact Shadows"
@@ -1565,6 +1565,7 @@ wasm = true
 name = "split_screen"
 path = "examples/3d/split_screen.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.split_screen]
 name = "Split Screen"
@@ -3814,6 +3815,7 @@ wasm = true
 name = "box_shadow"
 path = "examples/ui/styling/box_shadow.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.box_shadow]
 name = "Box Shadow"
@@ -3858,6 +3860,7 @@ wasm = true
 name = "display_and_visibility"
 path = "examples/ui/layout/display_and_visibility.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.display_and_visibility]
 name = "Display and Visibility"
@@ -4883,7 +4886,7 @@ wasm = true
 name = "ssr"
 path = "examples/3d/ssr.rs"
 doc-scrape-examples = true
-required-features = ["bluenoise_texture"]
+required-features = ["bluenoise_texture", "bevy_feathers"]
 
 [package.metadata.example.ssr]
 name = "Screen Space Reflections"
@@ -4906,6 +4909,7 @@ wasm = true
 name = "color_grading"
 path = "examples/3d/color_grading.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.color_grading]
 name = "Color grading"
@@ -4975,7 +4979,7 @@ wasm = false
 name = "app_under_test"
 path = "examples/remote/app_under_test.rs"
 doc-scrape-examples = true
-required-features = ["bevy_remote"]
+required-features = ["bevy_remote", "bevy_feathers"]
 
 [package.metadata.example.app_under_test]
 name = "App Under Test"
@@ -4987,7 +4991,7 @@ wasm = false
 name = "integration_test"
 path = "examples/remote/integration_test.rs"
 doc-scrape-examples = true
-required-features = ["bevy_remote"]
+required-features = ["bevy_remote", "bevy_feathers"]
 
 [package.metadata.example.integration_test]
 name = "Integration Test"
@@ -5150,6 +5154,7 @@ wasm = true
 name = "animation_masks"
 path = "examples/animation/animation_masks.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.animation_masks]
 name = "Animation Masks"
@@ -5161,7 +5166,7 @@ wasm = true
 name = "pcss"
 path = "examples/3d/pcss.rs"
 doc-scrape-examples = true
-required-features = ["experimental_pbr_pcss"]
+required-features = ["bevy_feathers", "experimental_pbr_pcss"]
 
 [package.metadata.example.pcss]
 name = "Percentage-closer soft shadows"
@@ -5173,7 +5178,7 @@ wasm = false
 name = "mixed_lighting"
 path = "examples/3d/mixed_lighting.rs"
 doc-scrape-examples = true
-required-features = ["jpeg"]
+required-features = ["jpeg", "bevy_feathers"]
 
 [package.metadata.example.mixed_lighting]
 name = "Mixed lighting"
@@ -5207,7 +5212,7 @@ wasm = true
 name = "specular_tint"
 path = "examples/3d/specular_tint.rs"
 doc-scrape-examples = true
-required-features = ["pbr_specular_textures"]
+required-features = ["pbr_specular_textures", "bevy_feathers"]
 
 [package.metadata.example.specular_tint]
 name = "Specular Tint"
@@ -5343,7 +5348,7 @@ wasm = true
 name = "clustered_decals"
 path = "examples/3d/clustered_decals.rs"
 doc-scrape-examples = true
-required-features = ["pbr_clustered_decals"]
+required-features = ["pbr_clustered_decals", "bevy_feathers"]
 
 [package.metadata.example.clustered_decals]
 name = "Clustered Decals"
@@ -5355,7 +5360,7 @@ wasm = false
 name = "light_textures"
 path = "examples/3d/light_textures.rs"
 doc-scrape-examples = true
-required-features = ["pbr_light_textures"]
+required-features = ["pbr_light_textures", "bevy_feathers"]
 
 [package.metadata.example.light_textures]
 name = "Light Textures"
@@ -5367,6 +5372,7 @@ wasm = false
 name = "occlusion_culling"
 path = "examples/3d/occlusion_culling.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.occlusion_culling]
 name = "Occlusion Culling"
@@ -5575,7 +5581,7 @@ wasm = false
 name = "clustered_decal_maps"
 path = "examples/3d/clustered_decal_maps.rs"
 doc-scrape-examples = true
-required-features = ["pbr_clustered_decals", "https"]
+required-features = ["pbr_clustered_decals", "https", "bevy_feathers"]
 
 [package.metadata.example.clustered_decal_maps]
 name = "Clustered Decal Maps"
@@ -5587,6 +5593,7 @@ wasm = false
 name = "mirror"
 path = "examples/3d/mirror.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.mirror]
 name = "Mirror"
@@ -5598,6 +5605,7 @@ wasm = true
 name = "dynamic_mip_generation"
 path = "examples/2d/dynamic_mip_generation.rs"
 doc-scrape-examples = true
+required-features = ["bevy_feathers"]
 
 [package.metadata.example.dynamic_mip_generation]
 name = "Dynamic Mipmap Generation"
@@ -5609,7 +5617,7 @@ wasm = false
 name = "pccm"
 path = "examples/3d/pccm.rs"
 doc-scrape-examples = true
-required-features = ["free_camera", "https"]
+required-features = ["free_camera", "https", "bevy_feathers"]
 
 [package.metadata.example.pccm]
 name = "Parallax-Corrected Cubemaps"
@@ -5621,7 +5629,7 @@ wasm = true
 name = "light_probe_blending"
 path = "examples/3d/light_probe_blending.rs"
 doc-scrape-examples = true
-required-features = ["free_camera", "https"]
+required-features = ["free_camera", "https", "bevy_feathers"]
 
 [package.metadata.example.light_probe_blending]
 name = "Light Probe Blending"
